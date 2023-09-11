@@ -1,8 +1,10 @@
 # Getting Started copernicus images
-PFor run project use npm i or yarn install
-add .env file with API credentials:
+For run project use npm i or yarn install
+
+add .env file to root with API credentials:
 
 REACT_APP_USER_NAME = user
+
 REACT_APP_USER_PASSWORD = pass
 
 ## Available Scripts
