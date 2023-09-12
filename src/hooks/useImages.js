@@ -7,7 +7,6 @@ import {getRandomIndexes} from '../Utils/RandomIndex';
 const useImages = (maxRecords) =>{
     const [images, setImages] = useState([]);
     const [searchImages, setSearcImages] = useState([]);
-    // const [showIndex, setShowIndex] = useState(0);
     const [randomIndexes, setRandomIndexes] = useState([]);
     const [brightness, setBrightness] = useState(100);
     const [isLoading,setLoading]= useState(true);
@@ -30,8 +29,6 @@ const useImages = (maxRecords) =>{
       }
   
       const newRandomIndexes = getRandomIndexes(maxRecords,randomIndexes,[],0);
-      setRandomIndexes(newRandomIndexes);
-
       const url1 = await api.getImage(searchedImages[newRandomIndexes[0]].url);
       const url2 = await api.getImage(searchedImages[newRandomIndexes[1]].url);
 
@@ -39,8 +36,8 @@ const useImages = (maxRecords) =>{
         {url:url1,brightness:`${brightness}%`},
         {url:url2,brightness:`${brightness}%`}];
   
+      setRandomIndexes(newRandomIndexes);
       setImages(randomImages);
-
       setLoading(false);
     };
   
