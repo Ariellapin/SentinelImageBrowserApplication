@@ -1,11 +1,14 @@
 import { useState, useEffect,useRef } from "react";
 import SciHubAPI from "../Utils/API/ScihubAPI";
-import {getImagesLinks} from '../Utils/XMLParser'
+import {getImagesLinks} from '../Utils/XMLParser';
+import {getRandomIndexes} from '../Utils/RandomIndex';
+
 
 const useImages = (maxRecords) =>{
     const [images, setImages] = useState([]);
     const [searchImages, setSearcImages] = useState([]);
-    const [showIndex, setShowIndex] = useState(0);
+    // const [showIndex, setShowIndex] = useState(0);
+    const [randomIndexes, setRandomIndexes] = useState([]);
     const [brightness, setBrightness] = useState(100);
     const [isLoading,setLoading]= useState(true);
     const dataFetchedRef = useRef(false);
@@ -26,18 +29,18 @@ const useImages = (maxRecords) =>{
         return;
       }
   
-      let newShowIndex = showIndex + 2;
-      if(newShowIndex >= searchedImages.length - 1)
-        newShowIndex = 0;
-  
-      const url1 = await api.getImage(searchedImages[newShowIndex].url);
-      const url2 = await api.getImage(searchedImages[newShowIndex + 1].url);
+      const newRandomIndexes = getRandomIndexes(maxRecords,randomIndexes,[],0);
+      setRandomIndexes(newRandomIndexes);
+
+      const url1 = await api.getImage(searchedImages[newRandomIndexes[0]].url);
+      const url2 = await api.getImage(searchedImages[newRandomIndexes[1]].url);
+
       const randomImages = [  
         {url:url1,brightness:`${brightness}%`},
         {url:url2,brightness:`${brightness}%`}];
   
       setImages(randomImages);
-      setShowIndex(newShowIndex);
+
       setLoading(false);
     };
   

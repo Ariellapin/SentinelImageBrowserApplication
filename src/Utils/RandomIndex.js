@@ -1,14 +1,14 @@
 
-const max = 10;
-export function getRandomIndexes(oldIndexes, newIndexes, count) {
+
+export function getRandomIndexes(maxNumber,oldIndexes, newIndexes, count) {
     if (count > 1) 
         return newIndexes;
     
-    const idx = Math.floor(Math.random() * max);
+    const idx = Math.floor(Math.random() * maxNumber);
     if (!oldIndexes.includes(idx) && !newIndexes.includes(idx)){
         newIndexes.push(idx);
         count++;
     }
         
-    return getRandomIndexes(oldIndexes, newIndexes, count);
+    return getRandomIndexes(maxNumber,oldIndexes, newIndexes, count);
 }
