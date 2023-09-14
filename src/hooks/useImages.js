@@ -29,6 +29,7 @@ const useImages = (maxRecords) =>{
       }
   
       const newRandomIndexes = getRandomIndexes(maxRecords,randomIndexes,[],0);
+      console.log(`Next random indexes:${newRandomIndexes}`);
       const url1 = await api.getImage(searchedImages[newRandomIndexes[0]].url);
       const url2 = await api.getImage(searchedImages[newRandomIndexes[1]].url);
 

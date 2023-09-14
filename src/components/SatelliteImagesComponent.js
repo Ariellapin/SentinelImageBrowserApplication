@@ -3,7 +3,7 @@ import SatelliteImageComponent from './SatelliteImageComponent';
 import useImages from '../hooks/useImages'
 
 const SatiliteImagesComponent = () => {
-  const maxRecords = 20;
+  const maxRecords = 50;
   const [isLoading,searchImages,images,renderBrigtness,loadImages] = useImages(maxRecords);
 
   const renderImages = images.map((image,idx)=>{
